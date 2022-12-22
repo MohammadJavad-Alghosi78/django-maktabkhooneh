@@ -28,6 +28,11 @@ class Post(models.Model):
         # verbose_name = 'پست' # change name in admin panel
         # verbose_name_plural = 'پست‌ها' # change name in admin panel with 's
 
+    def snippet(self):
+        return self.content[:100] + '...'
+    
     def __str__(self) -> str:
         return "{}".format(self.title)
+
+    
 
