@@ -5,13 +5,13 @@
   <div class="container">
     <div class="row d-flex align-items-center justify-content-center">
       <div class="about-content col-lg-12">
-        <h1 class="text-white">Blog Details Page</h1>
+        <h1 class="text-white">{{post.title}}</h1>
         <p class="text-white link-nav">
-          <a href="index.html">Home </a>
+          <a href="{% url 'website:index' %}">Home </a>
           <span class="lnr lnr-arrow-right"></span
-          ><a href="blog-home.html">Blog </a>
+          ><a href="{% url 'blog:index' %}">Blog </a>
           <span class="lnr lnr-arrow-right"></span>
-          <a href="blog-single.html"> Blog Details Page</a>
+          {{post.title}}
         </p>
       </div>
     </div>
@@ -76,58 +76,20 @@
             <h3 class="mt-20 mb-20">{{post.title}}</h3>
             <p class="excert">{{post.content}}</p>
           </div>
-          <div class="col-lg-12">
-            <div class="quotes">
-              MCSE boot camps have its supporters and its detractors. Some
-              people do not understand why you should have to spend money on
-              boot camp when you can get the MCSE study materials yourself at a
-              fraction of the camp price. However, who has the willpower to
-              actually sit through a self-imposed MCSE training.
-            </div>
-            <div class="row mt-30 mb-30">
-              <div class="col-6">
-                <img
-                  class="img-fluid"
-                  src="{% static 'img/blog/post-img1.jpg' %}"
-                  alt=""
-                />
-              </div>
-              <div class="col-6">
-                <img
-                  class="img-fluid"
-                  src="{% static 'img/blog/post-img2.jpg' %}"
-                  alt=""
-                />
-              </div>
-              <div class="col-lg-12 mt-30">
-                <p>
-                  MCSE boot camps have its supporters and its detractors. Some
-                  people do not understand why you should have to spend money on
-                  boot camp when you can get the MCSE study materials yourself
-                  at a fraction of the camp price. However, who has the
-                  willpower.
-                </p>
-                <p>
-                  MCSE boot camps have its supporters and its detractors. Some
-                  people do not understand why you should have to spend money on
-                  boot camp when you can get the MCSE study materials yourself
-                  at a fraction of the camp price. However, who has the
-                  willpower.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="navigation-area">
           <div class="row">
+            {% if prev_post %}
             <div
-              class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center"
+              class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center mr-auto"
             >
               <div class="thumb">
-                <a href="#"
+                <a href="{% url 'blog:single' pid=prev_post.id %}"
                   ><img
                     class="img-fluid"
-                    src="{% static 'img/blog/prev.jpg' %}"
+                    src="{{prev_post.image.url}}"
+                    width="110px"
+                    height="110px"
                     alt=""
                 /></a>
               </div>
@@ -138,15 +100,20 @@
               </div>
               <div class="detials">
                 <p>Prev Post</p>
-                <a href="#"><h4>Space The Final Frontier</h4></a>
+                <a href="{% url 'blog:single' pid=prev_post.id %}"
+                  ><h4>{{prev_post.title}}</h4></a
+                >
               </div>
             </div>
+            {% endif %} {% if next_post %}
             <div
-              class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center"
+              class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center ml-auto"
             >
               <div class="detials">
                 <p>Next Post</p>
-                <a href="#"><h4>Telescopes 101</h4></a>
+                <a href="{% url 'blog:single' pid=next_post.id %}"
+                  ><h4>{{next_post.title}}</h4></a
+                >
               </div>
               <div class="arrow">
                 <a href="#"
@@ -154,14 +121,17 @@
                 ></a>
               </div>
               <div class="thumb">
-                <a href="#"
+                <a href="{% url 'blog:single' pid=next_post.id %}"
                   ><img
                     class="img-fluid"
-                    src="{% static 'img/blog/next.jpg' %}"
+                    src="{{next_post.image.url}}"
+                    width="110px"
+                    height="110px"
                     alt=""
                 /></a>
               </div>
             </div>
+            {% endif %}
           </div>
         </div>
         <div class="comments-area">
