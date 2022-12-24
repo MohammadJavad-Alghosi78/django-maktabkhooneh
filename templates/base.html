@@ -201,5 +201,13 @@
         </div>
       </div>
     </footer>
+    {% if messages %}
+      <ul class="message" style="position: fixed; top: 50%; right: 45%; background-color: red; z-index: 100;">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
   </body>
 </html>

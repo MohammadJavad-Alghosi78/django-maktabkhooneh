@@ -88,7 +88,6 @@
                 onfocus="this.placeholder = ''"
                 onblur="this.placeholder = 'Enter subject'"
                 class="common-input mb-20 form-control"
-                required=""
                 type="text"
               />
             </div>
@@ -111,13 +110,13 @@
           </div>
         </form>
       </div>
-      {% if messages %}
-      <ul class="message">
+      <!-- {% if messages %}
+      <ul class="message" style="position: fixed; top: 300px; right: 50%; background-color: red;">
         {% for message in messages %}
         <li{% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</li>
         {% endfor %}
       </ul>
-      {% endif %}
+      {% endif %} -->
     </div>
   </div>
 </section>
